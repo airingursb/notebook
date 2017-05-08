@@ -1,5 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Airing's Notebook</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2017-05-08T20:00:00+08:00</updated><entry><title>Pokemon 种类与属性值的数据探索</title><link href="/pokemon-analytics.ipynb-meta.html" rel="alternate"></link><published>2017-05-08T20:00:00+08:00</published><updated>2017-05-08T20:00:00+08:00</updated><author><name>Airing</name></author><id>tag:,2017-05-08:pokemon-analytics.ipynb-meta.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Pokemon 种类与属性值的数据探索 - Airing's Notebook</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/pokemon-analytics.ipynb-meta.html">
+
+        <meta name="author" content="Airing" />
+        <meta name="keywords" content="python" />
+        <meta name="description" content="1 简介¶今天在 kaggle 上看到了一个比较有意思的 Dataset，收录了手游 Pokemon 中 721 只神奇宝贝的基本数据，包括 id，名字(name)，类别(type1)，二级分类(type2)，基本属性(血量:HP, 攻击力:Attack, 防御力:Defense, 魔攻:Special Attack, 魔防:Special Defense, 速度:Speed)。 现参考 kaggle 上的一些文章，做 pokemon 类别对其基本属性影响的分析探究。 2 Pokemon 基本数据概要¶" />
+
+        <meta property="og:site_name" content="Airing's Notebook" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Pokemon 种类与属性值的数据探索"/>
+        <meta property="og:url" content="/pokemon-analytics.ipynb-meta.html"/>
+        <meta property="og:description" content="1 简介¶今天在 kaggle 上看到了一个比较有意思的 Dataset，收录了手游 Pokemon 中 721 只神奇宝贝的基本数据，包括 id，名字(name)，类别(type1)，二级分类(type2)，基本属性(血量:HP, 攻击力:Attack, 防御力:Defense, 魔攻:Special Attack, 魔防:Special Defense, 速度:Speed)。 现参考 kaggle 上的一些文章，做 pokemon 类别对其基本属性影响的分析探究。 2 Pokemon 基本数据概要¶"/>
+        <meta property="article:published_time" content="2017-05-08" />
+            <meta property="article:section" content="posts" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:author" content="Airing" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Airing's Notebook ATOM Feed"/>
+
+
+
+        <link href="/feeds/posts.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Airing's Notebook posts ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Airing's Notebook            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/category/posts.html">Posts</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/pokemon-analytics.ipynb-meta.html"
+                       rel="bookmark"
+                       title="Permalink to Pokemon 种类与属性值的数据探索">
+                        Pokemon 种类与属性值的数据探索
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-05-08T20:00:00+08:00"> 一 08 五月 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/python.html">python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <style type="text/css">/*!
 *
 * IPython notebook
 *
@@ -230,7 +333,7 @@ div.unrecognized_cell .inner_cell a:hover {
   text-decoration: none;
 }
 @media (max-width: 540px) {
-  div.unrecognized_cell &gt; div.prompt {
+  div.unrecognized_cell > div.prompt {
     display: none;
   }
 }
@@ -283,19 +386,19 @@ div.input_prompt {
   color: #303F9F;
   border-top: 1px solid transparent;
 }
-div.input_area &gt; div.highlight {
+div.input_area > div.highlight {
   margin: 0.4em;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-div.input_area &gt; div.highlight &gt; pre {
+div.input_area > div.highlight > pre {
   margin: 0px;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+/* The following gets added to the <head> if it is detected that the user has a
  * monospace font with inconsistent normal/bold/italic height.  See
  * notebookmain.js.  Such fonts will have keywords vertically offset with
  * respect to the rest of the text.  The user should select a better font.
@@ -341,7 +444,7 @@ div.input_area &gt; div.highlight &gt; pre {
 }
 /*
 
-Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
 Adapted from GitHub theme
 
 */
@@ -803,7 +906,7 @@ div.text_cell {
   align-items: stretch;
 }
 @media (max-width: 540px) {
-  div.text_cell &gt; div.prompt {
+  div.text_cell > div.prompt {
     display: none;
   }
 }
@@ -868,8 +971,8 @@ h6:hover .anchor-link {
   font-size: 100%;
   font-style: italic;
 }
-&lt;/style&gt;
-&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
 .highlight  { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
@@ -933,8 +1036,8 @@ h6:hover .anchor-link {
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
-&lt;style type="text/css"&gt;
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
 .ansi-black-fg { color: #3E424D; }
 .ansi-black-bg { background-color: #3E424D; }
@@ -970,50 +1073,50 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-&lt;/style&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="1-简介"&gt;1 简介&lt;a class="anchor-link" href="#1-简介"&gt;¶&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;今天在 kaggle 上看到了一个比较有意思的 Dataset，收录了手游 Pokemon 中 721 只神奇宝贝的基本数据，包括 id，名字(name)，类别(type1)，二级分类(type2)，基本属性(血量:HP, 攻击力:Attack, 防御力:Defense, 魔攻:Special Attack, 魔防:Special Defense, 速度:Speed)。&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://airing.ursb.me/pokemon-analytics/pokemon.png" /&gt;&lt;/p&gt;
-&lt;p&gt;现参考 kaggle 上的一些文章，做 pokemon 类别对其基本属性影响的分析探究。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="2-Pokemon-基本数据概要"&gt;2 Pokemon 基本数据概要&lt;a class="anchor-link" href="#2-Pokemon-基本数据概要"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [1]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;seaborn&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;sns&lt;/span&gt;
+</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1-简介">1 简介<a class="anchor-link" href="#1-简介">¶</a></h2><p>今天在 kaggle 上看到了一个比较有意思的 Dataset，收录了手游 Pokemon 中 721 只神奇宝贝的基本数据，包括 id，名字(name)，类别(type1)，二级分类(type2)，基本属性(血量:HP, 攻击力:Attack, 防御力:Defense, 魔攻:Special Attack, 魔防:Special Defense, 速度:Speed)。</p>
+<p><img alt="" src="http://airing.ursb.me/pokemon-analytics/pokemon.png" /></p>
+<p>现参考 kaggle 上的一些文章，做 pokemon 类别对其基本属性影响的分析探究。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="2-Pokemon-基本数据概要">2 Pokemon 基本数据概要<a class="anchor-link" href="#2-Pokemon-基本数据概要">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-&lt;span class="n"&gt;data_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://airing.ursb.me/data/Pokemon.csv"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[1]:&lt;/div&gt;
-&lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
-&lt;div&gt;
-&lt;style&gt;
+<span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"http://airing.ursb.me/data/Pokemon.csv"</span><span class="p">)</span>
+<span class="n">data_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
     .dataframe thead tr:only-child th {
         text-align: right;
     }
@@ -1025,133 +1128,133 @@ h6:hover .anchor-link {
     .dataframe tbody tr th {
         vertical-align: top;
     }
-&lt;/style&gt;
-&lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;#&lt;/th&gt;
-&lt;th&gt;Name&lt;/th&gt;
-&lt;th&gt;Type 1&lt;/th&gt;
-&lt;th&gt;Type 2&lt;/th&gt;
-&lt;th&gt;Total&lt;/th&gt;
-&lt;th&gt;HP&lt;/th&gt;
-&lt;th&gt;Attack&lt;/th&gt;
-&lt;th&gt;Defense&lt;/th&gt;
-&lt;th&gt;Sp. Atk&lt;/th&gt;
-&lt;th&gt;Sp. Def&lt;/th&gt;
-&lt;th&gt;Speed&lt;/th&gt;
-&lt;th&gt;Generation&lt;/th&gt;
-&lt;th&gt;Legendary&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;0&lt;/th&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;Bulbasaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;318&lt;/td&gt;
-&lt;td&gt;45&lt;/td&gt;
-&lt;td&gt;49&lt;/td&gt;
-&lt;td&gt;49&lt;/td&gt;
-&lt;td&gt;65&lt;/td&gt;
-&lt;td&gt;65&lt;/td&gt;
-&lt;td&gt;45&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;False&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1&lt;/th&gt;
-&lt;td&gt;2&lt;/td&gt;
-&lt;td&gt;Ivysaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;405&lt;/td&gt;
-&lt;td&gt;60&lt;/td&gt;
-&lt;td&gt;62&lt;/td&gt;
-&lt;td&gt;63&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;td&gt;60&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;False&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;2&lt;/th&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;Venusaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;525&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;td&gt;82&lt;/td&gt;
-&lt;td&gt;83&lt;/td&gt;
-&lt;td&gt;100&lt;/td&gt;
-&lt;td&gt;100&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;False&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;3&lt;/th&gt;
-&lt;td&gt;3&lt;/td&gt;
-&lt;td&gt;VenusaurMega Venusaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;625&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;td&gt;100&lt;/td&gt;
-&lt;td&gt;123&lt;/td&gt;
-&lt;td&gt;122&lt;/td&gt;
-&lt;td&gt;120&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;False&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;4&lt;/th&gt;
-&lt;td&gt;4&lt;/td&gt;
-&lt;td&gt;Charmander&lt;/td&gt;
-&lt;td&gt;Fire&lt;/td&gt;
-&lt;td&gt;NaN&lt;/td&gt;
-&lt;td&gt;309&lt;/td&gt;
-&lt;td&gt;39&lt;/td&gt;
-&lt;td&gt;52&lt;/td&gt;
-&lt;td&gt;43&lt;/td&gt;
-&lt;td&gt;60&lt;/td&gt;
-&lt;td&gt;50&lt;/td&gt;
-&lt;td&gt;65&lt;/td&gt;
-&lt;td&gt;1&lt;/td&gt;
-&lt;td&gt;False&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [2]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 最后两列没有意义，直接删去&lt;/span&gt;
-&lt;span class="n"&gt;data_df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;'Generation'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Legendary'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;describe&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[2]:&lt;/div&gt;
-&lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
-&lt;div&gt;
-&lt;style&gt;
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>#</th>
+<th>Name</th>
+<th>Type 1</th>
+<th>Type 2</th>
+<th>Total</th>
+<th>HP</th>
+<th>Attack</th>
+<th>Defense</th>
+<th>Sp. Atk</th>
+<th>Sp. Def</th>
+<th>Speed</th>
+<th>Generation</th>
+<th>Legendary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>Bulbasaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>318</td>
+<td>45</td>
+<td>49</td>
+<td>49</td>
+<td>65</td>
+<td>65</td>
+<td>45</td>
+<td>1</td>
+<td>False</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2</td>
+<td>Ivysaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>405</td>
+<td>60</td>
+<td>62</td>
+<td>63</td>
+<td>80</td>
+<td>80</td>
+<td>60</td>
+<td>1</td>
+<td>False</td>
+</tr>
+<tr>
+<th>2</th>
+<td>3</td>
+<td>Venusaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>525</td>
+<td>80</td>
+<td>82</td>
+<td>83</td>
+<td>100</td>
+<td>100</td>
+<td>80</td>
+<td>1</td>
+<td>False</td>
+</tr>
+<tr>
+<th>3</th>
+<td>3</td>
+<td>VenusaurMega Venusaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>625</td>
+<td>80</td>
+<td>100</td>
+<td>123</td>
+<td>122</td>
+<td>120</td>
+<td>80</td>
+<td>1</td>
+<td>False</td>
+</tr>
+<tr>
+<th>4</th>
+<td>4</td>
+<td>Charmander</td>
+<td>Fire</td>
+<td>NaN</td>
+<td>309</td>
+<td>39</td>
+<td>52</td>
+<td>43</td>
+<td>60</td>
+<td>50</td>
+<td>65</td>
+<td>1</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 最后两列没有意义，直接删去</span>
+<span class="n">data_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Generation'</span><span class="p">,</span> <span class="s1">'Legendary'</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">data_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
     .dataframe thead tr:only-child th {
         text-align: right;
     }
@@ -1163,135 +1266,135 @@ h6:hover .anchor-link {
     .dataframe tbody tr th {
         vertical-align: top;
     }
-&lt;/style&gt;
-&lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;#&lt;/th&gt;
-&lt;th&gt;Total&lt;/th&gt;
-&lt;th&gt;HP&lt;/th&gt;
-&lt;th&gt;Attack&lt;/th&gt;
-&lt;th&gt;Defense&lt;/th&gt;
-&lt;th&gt;Sp. Atk&lt;/th&gt;
-&lt;th&gt;Sp. Def&lt;/th&gt;
-&lt;th&gt;Speed&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;count&lt;/th&gt;
-&lt;td&gt;800.000000&lt;/td&gt;
-&lt;td&gt;800.00000&lt;/td&gt;
-&lt;td&gt;800.000000&lt;/td&gt;
-&lt;td&gt;800.000000&lt;/td&gt;
-&lt;td&gt;800.000000&lt;/td&gt;
-&lt;td&gt;800.000000&lt;/td&gt;
-&lt;td&gt;800.000000&lt;/td&gt;
-&lt;td&gt;800.000000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;mean&lt;/th&gt;
-&lt;td&gt;362.813750&lt;/td&gt;
-&lt;td&gt;435.10250&lt;/td&gt;
-&lt;td&gt;69.258750&lt;/td&gt;
-&lt;td&gt;79.001250&lt;/td&gt;
-&lt;td&gt;73.842500&lt;/td&gt;
-&lt;td&gt;72.820000&lt;/td&gt;
-&lt;td&gt;71.902500&lt;/td&gt;
-&lt;td&gt;68.277500&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;std&lt;/th&gt;
-&lt;td&gt;208.343798&lt;/td&gt;
-&lt;td&gt;119.96304&lt;/td&gt;
-&lt;td&gt;25.534669&lt;/td&gt;
-&lt;td&gt;32.457366&lt;/td&gt;
-&lt;td&gt;31.183501&lt;/td&gt;
-&lt;td&gt;32.722294&lt;/td&gt;
-&lt;td&gt;27.828916&lt;/td&gt;
-&lt;td&gt;29.060474&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;min&lt;/th&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;td&gt;180.00000&lt;/td&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;td&gt;5.000000&lt;/td&gt;
-&lt;td&gt;5.000000&lt;/td&gt;
-&lt;td&gt;10.000000&lt;/td&gt;
-&lt;td&gt;20.000000&lt;/td&gt;
-&lt;td&gt;5.000000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;25%&lt;/th&gt;
-&lt;td&gt;184.750000&lt;/td&gt;
-&lt;td&gt;330.00000&lt;/td&gt;
-&lt;td&gt;50.000000&lt;/td&gt;
-&lt;td&gt;55.000000&lt;/td&gt;
-&lt;td&gt;50.000000&lt;/td&gt;
-&lt;td&gt;49.750000&lt;/td&gt;
-&lt;td&gt;50.000000&lt;/td&gt;
-&lt;td&gt;45.000000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;50%&lt;/th&gt;
-&lt;td&gt;364.500000&lt;/td&gt;
-&lt;td&gt;450.00000&lt;/td&gt;
-&lt;td&gt;65.000000&lt;/td&gt;
-&lt;td&gt;75.000000&lt;/td&gt;
-&lt;td&gt;70.000000&lt;/td&gt;
-&lt;td&gt;65.000000&lt;/td&gt;
-&lt;td&gt;70.000000&lt;/td&gt;
-&lt;td&gt;65.000000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;75%&lt;/th&gt;
-&lt;td&gt;539.250000&lt;/td&gt;
-&lt;td&gt;515.00000&lt;/td&gt;
-&lt;td&gt;80.000000&lt;/td&gt;
-&lt;td&gt;100.000000&lt;/td&gt;
-&lt;td&gt;90.000000&lt;/td&gt;
-&lt;td&gt;95.000000&lt;/td&gt;
-&lt;td&gt;90.000000&lt;/td&gt;
-&lt;td&gt;90.000000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;max&lt;/th&gt;
-&lt;td&gt;721.000000&lt;/td&gt;
-&lt;td&gt;780.00000&lt;/td&gt;
-&lt;td&gt;255.000000&lt;/td&gt;
-&lt;td&gt;190.000000&lt;/td&gt;
-&lt;td&gt;230.000000&lt;/td&gt;
-&lt;td&gt;194.000000&lt;/td&gt;
-&lt;td&gt;230.000000&lt;/td&gt;
-&lt;td&gt;180.000000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [3]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 先看看 HP 与 Attack 之间的关联&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jointplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"HP"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Attack"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAacAAAGkCAYAAACVe+o2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>#</th>
+<th>Total</th>
+<th>HP</th>
+<th>Attack</th>
+<th>Defense</th>
+<th>Sp. Atk</th>
+<th>Sp. Def</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>800.000000</td>
+<td>800.00000</td>
+<td>800.000000</td>
+<td>800.000000</td>
+<td>800.000000</td>
+<td>800.000000</td>
+<td>800.000000</td>
+<td>800.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>362.813750</td>
+<td>435.10250</td>
+<td>69.258750</td>
+<td>79.001250</td>
+<td>73.842500</td>
+<td>72.820000</td>
+<td>71.902500</td>
+<td>68.277500</td>
+</tr>
+<tr>
+<th>std</th>
+<td>208.343798</td>
+<td>119.96304</td>
+<td>25.534669</td>
+<td>32.457366</td>
+<td>31.183501</td>
+<td>32.722294</td>
+<td>27.828916</td>
+<td>29.060474</td>
+</tr>
+<tr>
+<th>min</th>
+<td>1.000000</td>
+<td>180.00000</td>
+<td>1.000000</td>
+<td>5.000000</td>
+<td>5.000000</td>
+<td>10.000000</td>
+<td>20.000000</td>
+<td>5.000000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>184.750000</td>
+<td>330.00000</td>
+<td>50.000000</td>
+<td>55.000000</td>
+<td>50.000000</td>
+<td>49.750000</td>
+<td>50.000000</td>
+<td>45.000000</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>364.500000</td>
+<td>450.00000</td>
+<td>65.000000</td>
+<td>75.000000</td>
+<td>70.000000</td>
+<td>65.000000</td>
+<td>70.000000</td>
+<td>65.000000</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>539.250000</td>
+<td>515.00000</td>
+<td>80.000000</td>
+<td>100.000000</td>
+<td>90.000000</td>
+<td>95.000000</td>
+<td>90.000000</td>
+<td>90.000000</td>
+</tr>
+<tr>
+<th>max</th>
+<td>721.000000</td>
+<td>780.00000</td>
+<td>255.000000</td>
+<td>190.000000</td>
+<td>230.000000</td>
+<td>194.000000</td>
+<td>230.000000</td>
+<td>180.000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 先看看 HP 与 Attack 之间的关联</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"HP"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"Attack"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_df</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAacAAAGkCAYAAACVe+o2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt8U/X9P/BXmqS3JKUVCjhAilAsQgcIiBuCuB8IXr4T
 mDIR+A5FsXgHBZGhiPOCVIduAkP9TmfVodsAdbqJPHSyoRNEioJcBeQmpS295NZcz++PmtOck5Nb
 2yTnpK/nP/MkJyfvnIW8ez6f93l/dIIgCCAiIlKRjFQHQEREJMfkREREqsPkREREqsPkREREqsPk
@@ -1654,29 +1757,29 @@ h8OBzZs3Y+TIkakKlahDYHIiAtCtWzds2LBB8lhJSQmA5nXEAonL5/PhkksuwaxZs1IQJVHHweRE
 FEbgyun/t3fHNgCDMBQFvZCX9qSp6EJJ+FLuSmjonhAIurtm5vJq4F+cOUG9ny+tMW8jw/fECWp/
 W283B5zlywwA4tg5ARBHnACII04AxBEnAOKIEwBxxAmAOOIEQBxxAiDOA/jp118JgQdHAAAAAElF
 TkSuQmCC
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [4]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 首先看看各 Pokemon 的数量分布&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;boxplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Total"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfMAAAFKCAYAAAAJyrb2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 首先看看各 Pokemon 的数量分布</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">"Total"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfMAAAFKCAYAAAAJyrb2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAFy9JREFUeJzt3V1sU/fBx/Hf8UtoHTsjbJkmdSvpgtHaESnDDo0UKYo2
 WmXatIkWqiZNukkILXQdE54yUhrqZqVlNOoiVWJaWW5GQF0yRia0XSBlVRVBpCWtpjIV1RqEqqOd
 skA9YTvEdpzzXPR53G6Ql4f22P2b7+cqHEfmd9Hy9fHLsWXbti0AAGAsV7EHAACAj4eYAwBgOGIO
@@ -1782,30 +1885,30 @@ CgQC+eM+n0+JRMLJWQAAlBRPIf8yl+vDxw6pVEoVFRXy+/1KJpPXHV9OVVVg2d8BAOBWUNB3s99z
 zz2anJyUJI2NjSkUCqm2tlavv/66MpmMEomEpqamFAwGCzkLAACjFfTMfM+ePdq3b5+y2axqamrU
 0tIiy7LU0dGhtrY22batSCSisrKyQs4CAMBolv3RF7IBAIBxuGgMAACGI+YAABiOmAMAYDhiDgCA
 4Yg5AACGI+YAABiOmAMAYDhiDgCA4f4HisYFC+3UP+sAAAAASUVORK5CYII=
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [5]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# id 和 Total 对属性研究无意义，删去&lt;/span&gt;
-&lt;span class="n"&gt;data_df_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;'#'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Total'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;boxplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data_df_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeQAAAFVCAYAAAA+OJwpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># id 和 Total 对属性研究无意义，删去</span>
+<span class="n">data_df_2</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'#'</span><span class="p">,</span> <span class="s1">'Total'</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_df_2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeQAAAFVCAYAAAA+OJwpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xt8VOWdx/FvJhdIJgnEbkS3K8RiJFBTWYmaSovKIuI1
 FCTllqigYl+6YlORi1jkUkSo0LXoirLutoEKEUiDu17YLBV8VQWUl0QICa8WXG+tEshCZnLPPPtH
 kmm45DaZmXMm83n/dTK38ztPzsx3nnOeeU6EMcYIAABYymF1AQAAgEAGAMAWCGQAAGyAQAYAwAYI
@@ -1979,56 +2082,56 @@ PPLII5o/f77Wr18fzM31mT/aqdUvf/lLvfzyy3I4HIqPj/eO8G9v/wnVz7e2bRYXFydjjB5//HH9
 x3/8xzntlZCQoD179pzx/mw9Vzxnzhw1NTXJ4XDoF7/4hQYNGqQ9e/YoOztbycnJln+pYy5rAAGX
 k5OjX//61+rfv7/Vpdga7dQ9va29wvZ3yACCJ1R7ZsFGO3VPb2svesgAANgAPWQAAGyAQAYAwAYI
 ZAAAbIBABgDABghkAABs4P8BIEOUqL7Y5UcAAAAASUVORK5CYII=
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [6]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df_2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtypes&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="s1"&gt;'int64'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;
-&lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;var_int&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt;
-&lt;span class="n"&gt;var_int&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[6]:&lt;/div&gt;
-&lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;Index(['Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'], dtype='object')&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [7]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;l_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;var_int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;var_int&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_subplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data_df_2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">var_int</span> <span class="o">=</span> <span class="n">data_df_2</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[</span><span class="n">data_df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">==</span><span class="s1">'int64'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">var_int</span> <span class="o">=</span> <span class="n">var_int</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">var_int</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>Index(['Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed'], dtype='object')</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">l_int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">var_int</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">var_int</span><span class="p">):</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data_df_2</span><span class="p">[</span><span class="n">val</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAv4AAAFMCAYAAACzj7haAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAv4AAAFMCAYAAACzj7haAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3X9cVGXeP/7XDKQgAyIsPdY1V4ywbLcsRT/smsh24x3d
 Ud3+Kn8g2ZItlq3JqpCg448KRbcfW7ZqdltCpXVHv/beH0WusYkbmGkpoqWSrRqioM6ACcxc3z/6
 cnYYhvl9Zs4583o+Hj5k5pxznfeZmevMe851nevSCSEEiIiIiIhI0/TBDoCIiIiIiOTHxJ+IiIiI
@@ -2383,29 +2486,29 @@ R0cH/f39tlvXi8Sj/y+7f1a5qOeuqqqqiqWlJerr64lGo/T09JCbm2vZedPU1ER7ezsNDQ2cnp7S
 nE4nQ0NDOJ1Oy+oHAgGePHlCWloaqamp9PX1WZpfRP59RvTHL2yKiIiIiMg/yT5fuBcRERERkbjR
 4C8iIiIikgQ0+IuIiIiIJAEN/iIiIiIiSUCDv4iIiIhIEtDgLyIiIiKSBDT4i4iIiIgkAQ3+IiIi
 IiJJ4Bt8ula2PPrv6gAAAABJRU5ErkJggg==
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [8]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 再看看各属性间的相关性&lt;/span&gt;
-&lt;span class="n"&gt;data_df_2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;corr&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
-&lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
-&lt;div&gt;
-&lt;style&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 再看看各属性间的相关性</span>
+<span class="n">data_df_2</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
     .dataframe thead tr:only-child th {
         text-align: right;
     }
@@ -2417,118 +2520,118 @@ IiJJ4Bt8ula2PPrv6gAAAABJRU5ErkJggg==
     .dataframe tbody tr th {
         vertical-align: top;
     }
-&lt;/style&gt;
-&lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;HP&lt;/th&gt;
-&lt;th&gt;Attack&lt;/th&gt;
-&lt;th&gt;Defense&lt;/th&gt;
-&lt;th&gt;Sp. Atk&lt;/th&gt;
-&lt;th&gt;Sp. Def&lt;/th&gt;
-&lt;th&gt;Speed&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;HP&lt;/th&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;td&gt;0.422386&lt;/td&gt;
-&lt;td&gt;0.239622&lt;/td&gt;
-&lt;td&gt;0.362380&lt;/td&gt;
-&lt;td&gt;0.378718&lt;/td&gt;
-&lt;td&gt;0.175952&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Attack&lt;/th&gt;
-&lt;td&gt;0.422386&lt;/td&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;td&gt;0.438687&lt;/td&gt;
-&lt;td&gt;0.396362&lt;/td&gt;
-&lt;td&gt;0.263990&lt;/td&gt;
-&lt;td&gt;0.381240&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Defense&lt;/th&gt;
-&lt;td&gt;0.239622&lt;/td&gt;
-&lt;td&gt;0.438687&lt;/td&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;td&gt;0.223549&lt;/td&gt;
-&lt;td&gt;0.510747&lt;/td&gt;
-&lt;td&gt;0.015227&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Sp. Atk&lt;/th&gt;
-&lt;td&gt;0.362380&lt;/td&gt;
-&lt;td&gt;0.396362&lt;/td&gt;
-&lt;td&gt;0.223549&lt;/td&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;td&gt;0.506121&lt;/td&gt;
-&lt;td&gt;0.473018&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Sp. Def&lt;/th&gt;
-&lt;td&gt;0.378718&lt;/td&gt;
-&lt;td&gt;0.263990&lt;/td&gt;
-&lt;td&gt;0.510747&lt;/td&gt;
-&lt;td&gt;0.506121&lt;/td&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;td&gt;0.259133&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;Speed&lt;/th&gt;
-&lt;td&gt;0.175952&lt;/td&gt;
-&lt;td&gt;0.381240&lt;/td&gt;
-&lt;td&gt;0.015227&lt;/td&gt;
-&lt;td&gt;0.473018&lt;/td&gt;
-&lt;td&gt;0.259133&lt;/td&gt;
-&lt;td&gt;1.000000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="3-探索-Pokemon-类别对其属性的影响"&gt;3 探索 Pokemon 类别对其属性的影响&lt;a class="anchor-link" href="#3-探索-Pokemon-类别对其属性的影响"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [9]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 统计 Pokemon 的类别&lt;/span&gt;
-&lt;span class="n"&gt;type1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>HP</th>
+<th>Attack</th>
+<th>Defense</th>
+<th>Sp. Atk</th>
+<th>Sp. Def</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>HP</th>
+<td>1.000000</td>
+<td>0.422386</td>
+<td>0.239622</td>
+<td>0.362380</td>
+<td>0.378718</td>
+<td>0.175952</td>
+</tr>
+<tr>
+<th>Attack</th>
+<td>0.422386</td>
+<td>1.000000</td>
+<td>0.438687</td>
+<td>0.396362</td>
+<td>0.263990</td>
+<td>0.381240</td>
+</tr>
+<tr>
+<th>Defense</th>
+<td>0.239622</td>
+<td>0.438687</td>
+<td>1.000000</td>
+<td>0.223549</td>
+<td>0.510747</td>
+<td>0.015227</td>
+</tr>
+<tr>
+<th>Sp. Atk</th>
+<td>0.362380</td>
+<td>0.396362</td>
+<td>0.223549</td>
+<td>1.000000</td>
+<td>0.506121</td>
+<td>0.473018</td>
+</tr>
+<tr>
+<th>Sp. Def</th>
+<td>0.378718</td>
+<td>0.263990</td>
+<td>0.510747</td>
+<td>0.506121</td>
+<td>1.000000</td>
+<td>0.259133</td>
+</tr>
+<tr>
+<th>Speed</th>
+<td>0.175952</td>
+<td>0.381240</td>
+<td>0.015227</td>
+<td>0.473018</td>
+<td>0.259133</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3-探索-Pokemon-类别对其属性的影响">3 探索 Pokemon 类别对其属性的影响<a class="anchor-link" href="#3-探索-Pokemon-类别对其属性的影响">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 统计 Pokemon 的类别</span>
+<span class="n">type1</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">'Type 1'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">type1</span><span class="p">)</span>
 
-&lt;span class="n"&gt;data_type1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="s1"&gt;'#'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;data_type1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ascending&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;['Grass' 'Fire' 'Water' 'Bug' 'Normal' 'Poison' 'Electric' 'Ground' 'Fairy'
+<span class="n">data_type1</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Type 1'</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[</span><span class="s1">'#'</span><span class="p">]</span>
+<span class="n">data_type1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>['Grass' 'Fire' 'Water' 'Bug' 'Normal' 'Poison' 'Electric' 'Ground' 'Fairy'
  'Fighting' 'Psychic' 'Rock' 'Ghost' 'Ice' 'Dragon' 'Dark' 'Steel' 'Flying']
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[9]:&lt;/div&gt;
-&lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;Type 1
+</pre>
+</div>
+</div>
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>Type 1
 Water       112
 Normal       98
 Grass        70
@@ -2547,36 +2650,36 @@ Fighting     27
 Ice          24
 Fairy        17
 Flying        4
-Name: #, dtype: int64&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [10]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Water'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Normal'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Grass'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Bug'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Psychic'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Fire'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Electric'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Rock'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Other'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;sizes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;112&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;98&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;70&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;69&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;52&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;175&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;colors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'yellowgreen'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'gold'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'lightskyblue'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'lightcoral'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'yellow'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'lightgreen'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'silver'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'white'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'pink'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;explode&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+Name: #, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Water'</span><span class="p">,</span> <span class="s1">'Normal'</span><span class="p">,</span> <span class="s1">'Grass'</span><span class="p">,</span> <span class="s1">'Bug'</span><span class="p">,</span> <span class="s1">'Psychic'</span><span class="p">,</span> <span class="s1">'Fire'</span><span class="p">,</span> <span class="s1">'Electric'</span><span class="p">,</span> <span class="s1">'Rock'</span><span class="p">,</span> <span class="s1">'Other'</span><span class="p">]</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">112</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">175</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'yellowgreen'</span><span class="p">,</span> <span class="s1">'gold'</span><span class="p">,</span> <span class="s1">'lightskyblue'</span><span class="p">,</span> <span class="s1">'lightcoral'</span><span class="p">,</span> <span class="s1">'yellow'</span><span class="p">,</span> <span class="s1">'lightgreen'</span><span class="p">,</span> <span class="s1">'silver'</span><span class="p">,</span> <span class="s1">'white'</span><span class="p">,</span> <span class="s1">'pink'</span><span class="p">]</span>
+<span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span> 
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pie&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sizes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;explode&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;explode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;colors&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="n"&gt;autopct&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="si"&gt;%1.1f%%&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;shadow&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;startangle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'equal'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Percentage of Different Types of Pokemon"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcwAAAFfCAYAAADDKfxrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+        <span class="n">autopct</span><span class="o">=</span><span class="s1">'</span><span class="si">%1.1f%%</span><span class="s1">'</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Percentage of Different Types of Pokemon"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcwAAAFfCAYAAADDKfxrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4FOXax/HvtmwqaUCAEELvoXeIGIoCAlJUQJqI9VhQ
 OS/tgApYUfCgIKhHkBKKIFWlqDTphF6kk4QQSID0ZDfb5v1jyZLQA0k25f5cF5dmd2b3ni3z2+eZ
 Z55RKYqiIIQQQoh7Uju7ACGEEKIokMAUQgghHoAEphBCCPEAJDCFEEKIByCBKYQQQjwACUwhhBDi
@@ -3202,41 +3305,41 @@ Pz+f/b/IZ6TAFClwdrsdn89HIBDAarVmG+N7PB6Ojo5wOBwATExMsLy8jN/vJxaL4XQ6/3HcoqIi
 gsEgIyMjDAwM8PLyQlNT07vPR+S9qHGBiHzX3t4eZ2dnjI2NffStiOQFnWGKyN8sLi6SSCS++z1T
 kUKlFaaIiEgOdIYpIiKSAwWmiIhIDhSYIiIiOVBgioiI5ECBKSIikgMFpoiISA7+BIxtC2smtJst
 AAAAAElFTkSuQmCC
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [11]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 首先通过箱线图观察各类 Pokemon 的数量分布&lt;/span&gt;
-&lt;span class="n"&gt;type_to_int_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s1"&gt;'Grass'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Fire'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Water'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Bug'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Normal'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-                    &lt;span class="s1"&gt;'Poison'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Electric'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Ground'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Fairy'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Fighting'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                    &lt;span class="s1"&gt;'Psychic'&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Rock'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Ghost'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Ice'&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Dragon'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-                    &lt;span class="s1"&gt;'Dark'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Steel'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Flying'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; 
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 首先通过箱线图观察各类 Pokemon 的数量分布</span>
+<span class="n">type_to_int_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'Grass'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'Fire'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'Water'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">'Bug'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'Normal'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> 
+                    <span class="s1">'Poison'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">'Electric'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">'Ground'</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">'Fairy'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">'Fighting'</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+                    <span class="s1">'Psychic'</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">'Rock'</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">'Ghost'</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s1">'Ice'</span> <span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">'Dragon'</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span> 
+                    <span class="s1">'Dark'</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">'Steel'</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">'Flying'</span><span class="p">:</span> <span class="mi">17</span><span class="p">}</span> 
         
-&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Int_Type1'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type_to_int_dict&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+<span class="n">data_df</span><span class="p">[</span><span class="s1">'Int_Type1'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">'Type 1'</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">type_to_int_dict</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"ticks"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;boxplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Int_Type1"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Total"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;palette&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"PRGn"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;despine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;offset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;trim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"ticks"</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"Int_Type1"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"Total"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"PRGn"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-&lt;span class="c1"&gt;# 可以发现龙类的平均数量是远高出其他水平&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgMAAAGQCAYAAAAzwWMnAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="c1"># 可以发现龙类的平均数量是远高出其他水平</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgMAAAGQCAYAAAAzwWMnAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xt0VOW9//HPDLmRTDIIglCxxhODl4JSEzXrgPlREY1Y
 K7cUEkj0LHQZ1FSJF0IAY7xA0WOxAiqULk8NXgABj7W0KljLAeTmqWKxZongsYEJd4aZyZ3s3x8x
 EQhMotk7mcx+v9ZyrWTP9vt8J0Myn/3sPc92GIZhCAAA2JazsxsAAACdizAAAIDNEQYAALA5wgAA
@@ -3459,29 +3562,29 @@ ANBCW2YArr/+et12221auXLlKbMHba0XHR2twYMH65JLLjlle2VlpcaMGaO6ujo9+eSTcrvduvfe
 e1VSUqJbb71VDQ0Nevjhh1vcw93MWQvAbhwGcRpAJ/D7/crKytJ//dd/qVevXpIaP1Vw3XXXaeTI
 kZ3cHWAvzAwAaJfc3Fz5fL7m7w3DkMPh0IQJEzR+/Pgz/j87duzQXXfdpfz8/OYgAKDzMDMAAIDN
 cQEhAAA2RxgAAMDmCAMAANgcYQAAAJsjDAAAYHP/HyGpsgcVTrltAAAAAElFTkSuQmCC
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [12]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;data_type1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;melt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data_df_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;id_vars&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"Name"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Type 1"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"Type 2"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;var_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Stat"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;data_type1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[12]:&lt;/div&gt;
-&lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
-&lt;div&gt;
-&lt;style&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_type1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">data_df_2</span><span class="p">,</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">,</span> <span class="s2">"Type 1"</span><span class="p">,</span> <span class="s2">"Type 2"</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">"Stat"</span><span class="p">)</span>
+<span class="n">data_type1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
     .dataframe thead tr:only-child th {
         text-align: right;
     }
@@ -3493,86 +3596,86 @@ cQEhAAA2RxgAAMDmCAMAANgcYQAAAJsjDAAAYHP/HyGpsgcVTrltAAAAAElFTkSuQmCC
     .dataframe tbody tr th {
         vertical-align: top;
     }
-&lt;/style&gt;
-&lt;table border="1" class="dataframe"&gt;
-&lt;thead&gt;
-&lt;tr style="text-align: right;"&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;Name&lt;/th&gt;
-&lt;th&gt;Type 1&lt;/th&gt;
-&lt;th&gt;Type 2&lt;/th&gt;
-&lt;th&gt;Stat&lt;/th&gt;
-&lt;th&gt;value&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;th&gt;0&lt;/th&gt;
-&lt;td&gt;Bulbasaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;HP&lt;/td&gt;
-&lt;td&gt;45&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;1&lt;/th&gt;
-&lt;td&gt;Ivysaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;HP&lt;/td&gt;
-&lt;td&gt;60&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;2&lt;/th&gt;
-&lt;td&gt;Venusaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;HP&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;3&lt;/th&gt;
-&lt;td&gt;VenusaurMega Venusaur&lt;/td&gt;
-&lt;td&gt;Grass&lt;/td&gt;
-&lt;td&gt;Poison&lt;/td&gt;
-&lt;td&gt;HP&lt;/td&gt;
-&lt;td&gt;80&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;th&gt;4&lt;/th&gt;
-&lt;td&gt;Charmander&lt;/td&gt;
-&lt;td&gt;Fire&lt;/td&gt;
-&lt;td&gt;NaN&lt;/td&gt;
-&lt;td&gt;HP&lt;/td&gt;
-&lt;td&gt;39&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [13]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;275&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;swarmplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Stat"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"value"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data_type1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hue&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Type 1"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;legend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bbox_to_anchor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;borderaxespad&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAJhCAYAAAC5A9QVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Name</th>
+<th>Type 1</th>
+<th>Type 2</th>
+<th>Stat</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Bulbasaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>HP</td>
+<td>45</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Ivysaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>HP</td>
+<td>60</td>
+</tr>
+<tr>
+<th>2</th>
+<td>Venusaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>HP</td>
+<td>80</td>
+</tr>
+<tr>
+<th>3</th>
+<td>VenusaurMega Venusaur</td>
+<td>Grass</td>
+<td>Poison</td>
+<td>HP</td>
+<td>80</td>
+</tr>
+<tr>
+<th>4</th>
+<td>Charmander</td>
+<td>Fire</td>
+<td>NaN</td>
+<td>HP</td>
+<td>39</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">275</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Stat"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"value"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data_type1</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"Type 1"</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAJhCAYAAAC5A9QVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VNX9//HXnSUhC1nJBmEJCWskoCyCCEpjrRTRKlsU
 CG61lIqC1PoDrQtVbAW0KlKoWwvlW7StVJR+9VujqCibSE0AWQOBBEISAmQjmczM/f1BiUASlJlM
 hsD7+Xj4eGTOufecD04ycz/3nHOPYZqmiYiIiIiISDOw+DsAOT8vvfSSv0MQD+m9a9n0/rVsev9a
@@ -6984,33 +7087,33 @@ PcXFxdxyyy2ceuqpfPrpp+i6DoDJZMLv90fzJwghhOhjJAARQog+bNq0afzsZz/j+uuv57zzzuO8
 IfoIxZDn7EIIIYQQQogIkScgQgghhBBCiIiRAEQIIYQQQggRMRKACCGEEEIIISJGAhAhhBBCCCFE
 xEgAIoQQQgghhIgYCUCEEEIIIYQQESMBiBBCCCGEECJiJAARQgghhBBCRMz/B/ubI0VPJAukAAAA
 AElFTkSuQmCC
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [14]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 更加直观地通过箱线图观察各类 Pokemon 的属性数值&lt;/span&gt;
-&lt;span class="n"&gt;fig&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;var_int&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
-    &lt;span class="n"&gt;ax1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_subplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;boxplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data_df_2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ax1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;       
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 更加直观地通过箱线图观察各类 Pokemon 的属性数值</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">24</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">var_int</span><span class="p">[:</span><span class="mi">6</span><span class="p">]):</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data_df</span><span class="p">[</span><span class="s1">'Type 1'</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">data_df_2</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>       
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxAAAASNCAYAAADTprjuAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxAAAASNCAYAAADTprjuAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlAVPX+//HXsMswqCSZZWmhpqXQTSvLH6ZpptUt5UaJ
 ItliUd8sxdJE0zSz6165FNnyvUJllpCWfdOr5bVds4LS8paWpaVCmsLgsM7vD2ISZRlmYQ7wfPzj
 eGbO+bxnmPOZ8z6fzWS32+0CAAAAACf4+ToAAAAAAI0HCQQAAAAAp5FAAAAAAHAaCQQAAAAAp5FA
@@ -8361,41 +8464,41 @@ GxuzcuVKwsLC0Gg0NGrUiCVLlrzO8AVBEIQ6EI9xFQRBEPTq8OHD/Pjjj0RHR8vH7O3tycrK+hOj
 EgRBEPRFrEAIgiAIehMREcGhQ4dYv359ueO6VioEQRCE/5vECoQgCIIgCIIgCDUmbqIWBEEQBEEQ
 BKHGxABCEARBEARBEIQaEwMIQRAEQRAEQRBqTAwgBEEQBEEQBEGoMTGAEARBEARBEAShxsQAQhAE
 QRAEQRCEGvsf5CS1xwgb8fwAAAAASUVORK5CYII=
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [15]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# 可以发现龙类的 Pokemon 攻击力最高，钢铁类的 Pokemon 防御力最强，飞行类的 Pokemon 速度最快。&lt;/span&gt;
-&lt;span class="c1"&gt;# 箱线图展示了分位数的位置，小提琴图则展示了任意位置的密度。&lt;/span&gt;
-&lt;span class="c1"&gt;# 这里我们再用小提琴图展示上列数据，会更加直观。&lt;/span&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 可以发现龙类的 Pokemon 攻击力最高，钢铁类的 Pokemon 防御力最强，飞行类的 Pokemon 速度最快。</span>
+<span class="c1"># 箱线图展示了分位数的位置，小提琴图则展示了任意位置的密度。</span>
+<span class="c1"># 这里我们再用小提琴图展示上列数据，会更加直观。</span>
 
-&lt;span class="c1"&gt;# distribution of HP among all types of pokemon&lt;/span&gt;
-&lt;span class="n"&gt;hp_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'HP'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="n"&gt;hp_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;hp_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pivot_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'HP'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;hp_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;violinplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;hp_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;palette&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Set3"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bw&lt;/span&gt;&lt;span class="o"&gt;=.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"HP of Different Types of Pokemon"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;despine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+<span class="c1"># distribution of HP among all types of pokemon</span>
+<span class="n">hp_data</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[[</span><span class="s1">'Name'</span><span class="p">,</span><span class="s1">'Type 1'</span><span class="p">,</span><span class="s1">'HP'</span><span class="p">]]</span>
+<span class="n">hp_data</span> <span class="o">=</span> <span class="n">hp_data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s1">'HP'</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Name'</span><span class="p">],</span>  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Type 1'</span><span class="p">])</span>
+<span class="n">hp_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">hp_data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set3"</span><span class="p">,</span> <span class="n">bw</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"HP of Different Types of Pokemon"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4XOV9N/zv2Wc5M5JGq3cbMFvYGgiFpPHVOpCG5OFl
 SXgLNKbQLBehcZo4CwkQSIKbpKEJKeBspW+v94KUJWXL1joBygM1Zn9sgwFvsrzIttbZ95lznj9G
 M/JoGUn2SGfOre/nunzJGo3l30gzc8753r/7viXbtm0QERERERERER0H2ekCiIiIiIiIiMj9GDAQ
@@ -9495,37 +9598,37 @@ yIkTJ4DCX4mYNGmScRouhBBCCKOQCgYhhBBCvBKFQlFqWY8ePQgPD6dv3776Zebm5mzbto05c+bg
 0aIFaWlpJmyVEEIIIUxBKhiEEEII8Uaio6PZv38/y5cvL7bcUKWDEEIIIf78pIJBCCGEEEIIIYQQ
 ZSYPeRRCCCGEEEIIIUSZSYJBCCGEEEIIIYQQZSYJBiGEEEIIIYQQQpSZJBiEEEIIIYQQQghRZpJg
 EEIIIYQQQgghRJlJgkEIIYQQQgghhBBl9v/uYERVcPqgbQAAAABJRU5ErkJggg==
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [17]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# distribution of Attack among all types of pokemon&lt;/span&gt;
-&lt;span class="n"&gt;attack_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Attack'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="n"&gt;attack_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;attack_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pivot_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Attack'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;attack_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;violinplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;attack_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;palette&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Set3"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bw&lt;/span&gt;&lt;span class="o"&gt;=.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Attack of Different Types of Pokemon"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;despine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># distribution of Attack among all types of pokemon</span>
+<span class="n">attack_data</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[[</span><span class="s1">'Name'</span><span class="p">,</span><span class="s1">'Type 1'</span><span class="p">,</span><span class="s1">'Attack'</span><span class="p">]]</span>
+<span class="n">attack_data</span> <span class="o">=</span> <span class="n">attack_data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s1">'Attack'</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Name'</span><span class="p">],</span>  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Type 1'</span><span class="p">])</span>
+<span class="n">attack_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">attack_data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set3"</span><span class="p">,</span> <span class="n">bw</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Attack of Different Types of Pokemon"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmUXHWZB/zv3Zdau7o7KxAISwIIQYigrCKg4ogmCgM4
 LAoouHA46jsII8uwOI4wogzovCqvygACoomCDCIaEAHZBdIhK9k6ne7qpfbtrr/3j+qupHqvTnff
 ulXP55ycdFdXJ0/1UnXv9z6/58cxxhgIIYQQQgghhBBC9gHvdQGEEEIIIYQQQgjxPwoYCCGEEEII
@@ -11027,37 +11130,37 @@ YCCzZ8+uzvBFRESkiuk2lSIiInLdvvrqK95//31SU1Ndy9q2bcvOnTvdGJWIiIi4g3owiIiIyHWZ
 OXMmX375JcuWLSu1vLyeDiIiIlL7qQeDiIiIiIiIiFSYJnkUERERERERkQpTgUFEREREREREKkwF
 BhERERERERGpMBUYRERERERERKTCVGAQERERERERkQpTgUFEREREREREKuz/AzxjPYygmLWoAAAA
 AElFTkSuQmCC
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [18]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# distribution of Defense among all types of pokemon&lt;/span&gt;
-&lt;span class="n"&gt;defense_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Defense'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="n"&gt;defense_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defense_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pivot_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Defense'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;defense_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;violinplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;defense_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;palette&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Set3"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bw&lt;/span&gt;&lt;span class="o"&gt;=.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Defense of Different Types of Pokemon"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;despine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># distribution of Defense among all types of pokemon</span>
+<span class="n">defense_data</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[[</span><span class="s1">'Name'</span><span class="p">,</span><span class="s1">'Type 1'</span><span class="p">,</span><span class="s1">'Defense'</span><span class="p">]]</span>
+<span class="n">defense_data</span> <span class="o">=</span> <span class="n">defense_data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s1">'Defense'</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Name'</span><span class="p">],</span>  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Type 1'</span><span class="p">])</span>
+<span class="n">defense_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">defense_data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set3"</span><span class="p">,</span> <span class="n">bw</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Defense of Different Types of Pokemon"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmcZFV9P/zP3evW1t2zCMMoEBEBlU2JooCoCQEjKhhR
 IWwuKAkigolLWEbEhAgYIwNqXg/6Sx5CDLggRqL4RDOGB5BFVhdGhEEyPTO91153P78/blX1vsxM
 d9+6pz7v10t7unrhVNdy7/nc7/keRQghQERERERERES0F9SkB0BERERERERE6ceAgYiIiIiIiIj2
@@ -12268,37 +12371,37 @@ fDzy8vJw6NAhAO5VIsaPH187gRMREVGtYAcDERER3RKVSlXhsW7dumHq1Kno2bOn9zGtVott27Zh
 eh9r2bIljhw5ImNUREREJAd2MBAREdEdmT17Nr744gusXbu23OOVdToQERGR8rGDgYiIiIiIiIiq
 jJM8EhEREREREVGVscBARERERERERFXGAgMRERERERERVRkLDERERERERERUZSwwEBEREREREVGV
 scBARERERERERFX2/3XhzqcUpvsDAAAAAElFTkSuQmCC
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [22]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# distribution of Sp.Attack among all types of pokemon&lt;/span&gt;
-&lt;span class="n"&gt;sp_attack_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Sp. Atk'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="n"&gt;sp_attack_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sp_attack_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pivot_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Sp. Atk'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;sp_attack_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;violinplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sp_attack_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;palette&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Set3"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bw&lt;/span&gt;&lt;span class="o"&gt;=.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Sp.Attack of Different Types of Pokemon"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;despine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># distribution of Sp.Attack among all types of pokemon</span>
+<span class="n">sp_attack_data</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[[</span><span class="s1">'Name'</span><span class="p">,</span><span class="s1">'Type 1'</span><span class="p">,</span><span class="s1">'Sp. Atk'</span><span class="p">]]</span>
+<span class="n">sp_attack_data</span> <span class="o">=</span> <span class="n">sp_attack_data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s1">'Sp. Atk'</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Name'</span><span class="p">],</span>  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Type 1'</span><span class="p">])</span>
+<span class="n">sp_attack_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">sp_attack_data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set3"</span><span class="p">,</span> <span class="n">bw</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Sp.Attack of Different Types of Pokemon"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmYXGWdNv777OfU0nuHLCxhTRAhKCiOiIiKosOguAEO
 mwQQF4ZLvEQZQWRxFBhQBnDlJ/IiQkQDI4PojDC+CCj7FhSQN5Ckk963Wk+d7fn9UV2Vru7qJUkl
 p87p+3NdXE13V1ee01V9lvt8n+8jCSEEiIiIiIiIiIh2gBz2AIiIiIiIiIgo+hgwEBEREREREdEO
@@ -13765,37 +13868,37 @@ yxcREZE8pttUioiIyCPbsmUL33zzDVFRUdbHqlWrxv79+21YlYiIiNiCRjCIiIjII4mMjGTz5s0s
 WrQo0+PZjXQQERGRx59GMIiIiIiIiIhIjukijyIiIiIiIiKSY2owiIiIiIiIiEiOqcEgIiIiIiIi
 IjmmBoOIiIiIiIiI5JgaDCIiIiIiIiKSY2owiIiIiIiIiEiO/T9TSbgOoACUDQAAAABJRU5ErkJg
 gg==
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [23]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# distribution of Sp.Defense among all types of pokemon&lt;/span&gt;
-&lt;span class="n"&gt;sp_defense_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Sp. Def'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="n"&gt;sp_defense_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sp_defense_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pivot_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Sp. Def'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;sp_defense_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;violinplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;sp_defense_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;palette&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Set3"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bw&lt;/span&gt;&lt;span class="o"&gt;=.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Sp.Defense of Different Types of Pokemon"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;despine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [23]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># distribution of Sp.Defense among all types of pokemon</span>
+<span class="n">sp_defense_data</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[[</span><span class="s1">'Name'</span><span class="p">,</span><span class="s1">'Type 1'</span><span class="p">,</span><span class="s1">'Sp. Def'</span><span class="p">]]</span>
+<span class="n">sp_defense_data</span> <span class="o">=</span> <span class="n">sp_defense_data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s1">'Sp. Def'</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Name'</span><span class="p">],</span>  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Type 1'</span><span class="p">])</span>
+<span class="n">sp_defense_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">sp_defense_data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set3"</span><span class="p">,</span> <span class="n">bw</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Sp.Defense of Different Types of Pokemon"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmUJFWZPv4n9sjIrap6B4EeAWlQaLZRZBF1ZMARFVBU
 GDYXkDOIAiouLC0wiiJuNChzhnGcHzLYOIo4KugMDMiXtQVZRAFpuoGu6tqzco/MjIj7+yMys6q6
 qteq6si49XzO4XTt3KzMyoz73Pe+VxFCCBARERERERERzYAa9QCIiIiIiIiIKP4YMBARERERERHR
@@ -15011,37 +15114,37 @@ S5cuhdlsxpIlS6DVarF69WosWLAADocDISEhWLJkSVOGT0RERI2My1QSERHRDfvyyy/x3nvvYc2a
 Nb7HunbtikOHDkkYFREREUmBHQxERER0QxYtWoQvvvgCGzZsqPJ4bZ0OREREJH/sYCAiIiIiIiKi
 euMkj0RERERERERUbywwEBEREREREVG9scBARERERERERPXGAgMRERERERER1RsLDERERERERERU
 bywwEBEREREREVG9/X/GXPC58tPlzAAAAABJRU5ErkJggg==
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [24]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# distribution of Speed among all types of pokemon&lt;/span&gt;
-&lt;span class="n"&gt;speed_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_df&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'Speed'&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="n"&gt;speed_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;speed_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pivot_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Speed'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Name'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;  &lt;span class="n"&gt;columns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'Type 1'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;speed_data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;violinplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;speed_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;palette&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"Set3"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bw&lt;/span&gt;&lt;span class="o"&gt;=.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cut&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ylim&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_title&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Speed of Different Types of Pokemon"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;despine&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [24]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># distribution of Speed among all types of pokemon</span>
+<span class="n">speed_data</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[[</span><span class="s1">'Name'</span><span class="p">,</span><span class="s1">'Type 1'</span><span class="p">,</span><span class="s1">'Speed'</span><span class="p">]]</span>
+<span class="n">speed_data</span> <span class="o">=</span> <span class="n">speed_data</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="s1">'Speed'</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Name'</span><span class="p">],</span>  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Type 1'</span><span class="p">])</span>
+<span class="n">speed_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">speed_data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"Set3"</span><span class="p">,</span> <span class="n">bw</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Speed of Different Types of Pokemon"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABBgAAAGPCAYAAAD2umM1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmYXGWZN/7v2erU3ms2QkInISSAMSD4CoagIDAKAQZ9
 mQEJIBiWcQy4vCDbgKwz8lPAARQdUBQEAkgQHAOyK2FJQgxk38je+1p71Vme3x/VVb1v6UpO1env
 57q4Qnc61Xf1cuqc77mf+5GEEAJERERERERERKMgO10AEREREREREZU+BgxERERERERENGoMGIiI
@@ -16365,13 +16468,13 @@ z+12y/l8TvL9JWI2m71ncADgLWwwAABPabVav7LRaJT5fJ7xeHzP2u129vt9lstler1e6rpOp9PJ
 arVKVVVpmibdbjd1Xb9zfADgj3lTCQC87Hg8ZrvdZr1e37PBYJDL5fLBqQCAT7DBAAC8ZLFY5HA4
 ZLPZ/MgfbToAAP+fDQYAAACgmCOPAAAAQDEFAwAAAFBMwQAAAAAUUzAAAAAAxRQMAAAAQDEFAwAA
 AFDsC1q09XppGxutAAAAAElFTkSuQmCC
-" /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
@@ -16398,1035 +16501,73 @@ AFDsC1q09XppGxutAAAAAElFTkSuQmCC
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;
-</summary><category term="python"></category></entry><entry><title>Hello World</title><link href="/hello-world.html" rel="alternate"></link><published>2017-05-08T15:00:00+08:00</published><updated>2017-05-08T15:00:00+08:00</updated><author><name>Airing</name></author><id>tag:,2017-05-08:hello-world.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
-*
-* IPython notebook
-*
-*/
-/* CSS font colors for translated ANSI colors. */
-.ansibold {
-  font-weight: bold;
-}
-/* use dark versions for foreground, to improve visibility */
-.ansiblack {
-  color: black;
-}
-.ansired {
-  color: darkred;
-}
-.ansigreen {
-  color: darkgreen;
-}
-.ansiyellow {
-  color: #c4a000;
-}
-.ansiblue {
-  color: darkblue;
-}
-.ansipurple {
-  color: darkviolet;
-}
-.ansicyan {
-  color: steelblue;
-}
-.ansigray {
-  color: gray;
-}
-/* and light for background, for the same reason */
-.ansibgblack {
-  background-color: black;
-}
-.ansibgred {
-  background-color: red;
-}
-.ansibggreen {
-  background-color: green;
-}
-.ansibgyellow {
-  background-color: yellow;
-}
-.ansibgblue {
-  background-color: blue;
-}
-.ansibgpurple {
-  background-color: magenta;
-}
-.ansibgcyan {
-  background-color: cyan;
-}
-.ansibggray {
-  background-color: gray;
-}
-div.cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border-radius: 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent;
-  width: 100%;
-  padding: 5px;
-  /* This acts as a spacer between cells, that is outside the border */
-  margin: 0px;
-  outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
-}
-div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
-  border-left-color: #E3F2FD;
-  border-left-width: 1px;
-  padding-left: 5px;
-  border-right-color: #E3F2FD;
-  border-right-width: 1px;
-  background: #E3F2FD;
-}
-@media print {
-  div.cell.jupyter-soft-selected {
-    border-color: transparent;
-  }
-}
-div.cell.selected {
-  border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
-}
-@media print {
-  div.cell.selected {
-    border-color: transparent;
-  }
-}
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
-.edit_mode div.cell.selected {
-  border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
-}
-@media print {
-  .edit_mode div.cell.selected {
-    border-color: transparent;
-  }
-}
-.prompt {
-  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
-  min-width: 14ex;
-  /* This padding is tuned to match the padding on the CodeMirror editor. */
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace;
-  text-align: right;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-  /* Don't highlight prompt number selection */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* Use default cursor */
-  cursor: default;
-}
-@media (max-width: 540px) {
-  .prompt {
-    text-align: left;
-  }
-}
-div.inner_cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_area {
-  border: 1px solid #cfcfcf;
-  border-radius: 2px;
-  background: #f7f7f7;
-  line-height: 1.21429em;
-}
-/* This is needed so that empty prompt areas can collapse to zero height when there
-   is no content in the output_subarea and the prompt. The main purpose of this is
-   to make sure that empty JavaScript output_subareas have no height. */
-div.prompt:empty {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-div.unrecognized_cell {
-  padding: 5px 5px 5px 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.unrecognized_cell .inner_cell {
-  border-radius: 2px;
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-  border: 1px solid #cfcfcf;
-  background: #eaeaea;
-}
-div.unrecognized_cell .inner_cell a {
-  color: inherit;
-  text-decoration: none;
-}
-div.unrecognized_cell .inner_cell a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-@media (max-width: 540px) {
-  div.unrecognized_cell &gt; div.prompt {
-    display: none;
-  }
-}
-div.code_cell {
-  /* avoid page breaking on code cells when printing */
-}
-@media print {
-  div.code_cell {
-    page-break-inside: avoid;
-  }
-}
-/* any special styling for code cells that are currently running goes here */
-div.input {
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.input {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_prompt {
-  color: #303F9F;
-  border-top: 1px solid transparent;
-}
-div.input_area &gt; div.highlight {
-  margin: 0.4em;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-div.input_area &gt; div.highlight &gt; pre {
-  margin: 0px;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-/* The following gets added to the &lt;head&gt; if it is detected that the user has a
- * monospace font with inconsistent normal/bold/italic height.  See
- * notebookmain.js.  Such fonts will have keywords vertically offset with
- * respect to the rest of the text.  The user should select a better font.
- * See: https://github.com/ipython/ipython/issues/1503
- *
- * .CodeMirror span {
- *      vertical-align: bottom;
- * }
- */
-.CodeMirror {
-  line-height: 1.21429em;
-  /* Changed from 1em to our global default */
-  font-size: 14px;
-  height: auto;
-  /* Changed to auto to autogrow */
-  background: none;
-  /* Changed from white to allow our bg to show through */
-}
-.CodeMirror-scroll {
-  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
-  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-.CodeMirror-lines {
-  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
-  /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
-}
-.CodeMirror-linenumber {
-  padding: 0 8px 0 4px;
-}
-.CodeMirror-gutters {
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
-}
-.CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-}
-/*
+</script>
 
-Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
-Adapted from GitHub theme
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
-*/
-.highlight-base {
-  color: #000;
-}
-.highlight-variable {
-  color: #000;
-}
-.highlight-variable-2 {
-  color: #1a1a1a;
-}
-.highlight-variable-3 {
-  color: #333333;
-}
-.highlight-string {
-  color: #BA2121;
-}
-.highlight-comment {
-  color: #408080;
-  font-style: italic;
-}
-.highlight-number {
-  color: #080;
-}
-.highlight-atom {
-  color: #88F;
-}
-.highlight-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.highlight-builtin {
-  color: #008000;
-}
-.highlight-error {
-  color: #f00;
-}
-.highlight-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.highlight-meta {
-  color: #AA22FF;
-}
-/* previously not defined, copying from default codemirror */
-.highlight-def {
-  color: #00f;
-}
-.highlight-string-2 {
-  color: #f50;
-}
-.highlight-qualifier {
-  color: #555;
-}
-.highlight-bracket {
-  color: #997;
-}
-.highlight-tag {
-  color: #170;
-}
-.highlight-attribute {
-  color: #00c;
-}
-.highlight-header {
-  color: blue;
-}
-.highlight-quote {
-  color: #090;
-}
-.highlight-link {
-  color: #00c;
-}
-/* apply the same style to codemirror */
-.cm-s-ipython span.cm-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-atom {
-  color: #88F;
-}
-.cm-s-ipython span.cm-number {
-  color: #080;
-}
-.cm-s-ipython span.cm-def {
-  color: #00f;
-}
-.cm-s-ipython span.cm-variable {
-  color: #000;
-}
-.cm-s-ipython span.cm-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-variable-2 {
-  color: #1a1a1a;
-}
-.cm-s-ipython span.cm-variable-3 {
-  color: #333333;
-}
-.cm-s-ipython span.cm-comment {
-  color: #408080;
-  font-style: italic;
-}
-.cm-s-ipython span.cm-string {
-  color: #BA2121;
-}
-.cm-s-ipython span.cm-string-2 {
-  color: #f50;
-}
-.cm-s-ipython span.cm-meta {
-  color: #AA22FF;
-}
-.cm-s-ipython span.cm-qualifier {
-  color: #555;
-}
-.cm-s-ipython span.cm-builtin {
-  color: #008000;
-}
-.cm-s-ipython span.cm-bracket {
-  color: #997;
-}
-.cm-s-ipython span.cm-tag {
-  color: #170;
-}
-.cm-s-ipython span.cm-attribute {
-  color: #00c;
-}
-.cm-s-ipython span.cm-header {
-  color: blue;
-}
-.cm-s-ipython span.cm-quote {
-  color: #090;
-}
-.cm-s-ipython span.cm-link {
-  color: #00c;
-}
-.cm-s-ipython span.cm-error {
-  color: #f00;
-}
-.cm-s-ipython span.cm-tab {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
-  background-position: right;
-  background-repeat: no-repeat;
-}
-div.output_wrapper {
-  /* this position must be relative to enable descendents to be absolute within it */
-  position: relative;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  z-index: 1;
-}
-/* class for the output area when it should be height-limited */
-div.output_scroll {
-  /* ideally, this would be max-height, but FF barfs all over that */
-  height: 24em;
-  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
-  width: 100%;
-  overflow: auto;
-  border-radius: 2px;
-  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  display: block;
-}
-/* output div while it is collapsed */
-div.output_collapsed {
-  margin: 0px;
-  padding: 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-div.out_prompt_overlay {
-  height: 100%;
-  padding: 0px 0.4em;
-  position: absolute;
-  border-radius: 2px;
-}
-div.out_prompt_overlay:hover {
-  /* use inner shadow to get border that is computed the same on WebKit/FF */
-  -webkit-box-shadow: inset 0 0 1px #000;
-  box-shadow: inset 0 0 1px #000;
-  background: rgba(240, 240, 240, 0.5);
-}
-div.output_prompt {
-  color: #D84315;
-}
-/* This class is the outer container of all output sections. */
-div.output_area {
-  padding: 0px;
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.output_area .MathJax_Display {
-  text-align: left !important;
-}
-div.output_area 
-div.output_area 
-div.output_area img,
-div.output_area svg {
-  max-width: 100%;
-  height: auto;
-}
-div.output_area img.unconfined,
-div.output_area svg.unconfined {
-  max-width: none;
-}
-/* This is needed to protect the pre formating from global settings such
-   as that of bootstrap */
-.output {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.output_area {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-div.output_area pre {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
-  color: black;
-  background-color: transparent;
-  border-radius: 0;
-}
-/* This class is for the output subarea inside the output_area and after
-   the prompt div. */
-div.output_subarea {
-  overflow-x: auto;
-  padding: 0.4em;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-  max-width: calc(100% - 14ex);
-}
-div.output_scroll div.output_subarea {
-  overflow-x: visible;
-}
-/* The rest of the output_* classes are for special styling of the different
-   output types */
-/* all text output has this class: */
-div.output_text {
-  text-align: left;
-  color: #000;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-}
-/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
-div.output_stderr {
-  background: #fdd;
-  /* very light red background for stderr */
-}
-div.output_latex {
-  text-align: left;
-}
-/* Empty output_javascript divs should have no height */
-div.output_javascript:empty {
-  padding: 0;
-}
-.js-error {
-  color: darkred;
-}
-/* raw_input styles */
-div.raw_input_container {
-  line-height: 1.21429em;
-  padding-top: 5px;
-}
-pre.raw_input_prompt {
-  /* nothing needed here. */
-}
-input.raw_input {
-  font-family: monospace;
-  font-size: inherit;
-  color: inherit;
-  width: auto;
-  /* make sure input baseline aligns with prompt */
-  vertical-align: baseline;
-  /* padding + margin = 0.5em between prompt and cursor */
-  padding: 0em 0.25em;
-  margin: 0em 0.25em;
-}
-input.raw_input:focus {
-  box-shadow: none;
-}
-p.p-space {
-  margin-bottom: 10px;
-}
-div.output_unrecognized {
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-}
-div.output_unrecognized a {
-  color: inherit;
-  text-decoration: none;
-}
-div.output_unrecognized a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-.rendered_html {
-  color: #000;
-  /* any extras will just be numbers: */
-}
-
-
-
-.rendered_html :link {
-  text-decoration: underline;
-}
-.rendered_html :visited {
-  text-decoration: underline;
-}
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+                <!-- 
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/airingursb"><i class="fa fa-github-square fa-lg"></i> GitHub</a></li>
+                <li class="list-group-item"><a href="http://blog.ursb.me"><i class="fa fa-blog-square fa-lg"></i> Blog</a></li>
+              </ul>
+            </li>
 
 
 
 
 
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://getpelican.com/" target="_blank">
+                Pelican
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://python.org/" target="_blank">
+                Python.org
+            </a>
+        </li>
+      </ul>
+    </li>
+    </ul>
+</section>
+ -->
+                <!-- instead of sidebar with github-card -->
+<div class="github-card" data-github="airingursb" data-width="300" data-height="" data-theme="default"></div>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Airing
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
 
-.rendered_html h1:first-child {
-  margin-top: 0.538em;
-}
-.rendered_html h2:first-child {
-  margin-top: 0.636em;
-}
-.rendered_html h3:first-child {
-  margin-top: 0.777em;
-}
-.rendered_html h4:first-child {
-  margin-top: 1em;
-}
-.rendered_html h5:first-child {
-  margin-top: 1em;
-}
-.rendered_html h6:first-child {
-  margin-top: 1em;
-}
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
 
 
-
-
-
-
-
-
-.rendered_html * + ul {
-  margin-top: 1em;
-}
-.rendered_html * + ol {
-  margin-top: 1em;
-}
-
-
-.rendered_html pre,
-
-
-
-.rendered_html tr,
-.rendered_html th,
-
-.rendered_html td,
-
-
-.rendered_html * + table {
-  margin-top: 1em;
-}
-
-.rendered_html * + p {
-  margin-top: 1em;
-}
-
-.rendered_html * + img {
-  margin-top: 1em;
-}
-.rendered_html img,
-
-.rendered_html img.unconfined,
-
-div.text_cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.text_cell &gt; div.prompt {
-    display: none;
-  }
-}
-div.text_cell_render {
-  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
-  outline: none;
-  resize: none;
-  width: inherit;
-  border-style: none;
-  padding: 0.5em 0.5em 0.5em 0.4em;
-  color: #000;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-a.anchor-link:link {
-  text-decoration: none;
-  padding: 0px 20px;
-  visibility: hidden;
-}
-h1:hover .anchor-link,
-h2:hover .anchor-link,
-h3:hover .anchor-link,
-h4:hover .anchor-link,
-h5:hover .anchor-link,
-h6:hover .anchor-link {
-  visibility: visible;
-}
-.text_cell.rendered .input_area {
-  display: none;
-}
-.text_cell.rendered 
-.text_cell.unrendered .text_cell_render {
-  display: none;
-}
-.cm-header-1,
-.cm-header-2,
-.cm-header-3,
-.cm-header-4,
-.cm-header-5,
-.cm-header-6 {
-  font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.cm-header-1 {
-  font-size: 185.7%;
-}
-.cm-header-2 {
-  font-size: 157.1%;
-}
-.cm-header-3 {
-  font-size: 128.6%;
-}
-.cm-header-4 {
-  font-size: 110%;
-}
-.cm-header-5 {
-  font-size: 100%;
-  font-style: italic;
-}
-.cm-header-6 {
-  font-size: 100%;
-  font-style: italic;
-}
-&lt;/style&gt;
-&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #A00000 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
-.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
-.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
-.highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #19177C } /* Name.Variable.Class */
-.highlight .vg { color: #19177C } /* Name.Variable.Global */
-.highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
-&lt;style type="text/css"&gt;
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-&lt;/style&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In [2]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt;
-&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[2]:&lt;/div&gt;
-&lt;div class="output_text output_subarea output_execute_result"&gt;
-&lt;pre&gt;48&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Hello World！This is &lt;strong&gt;Airing&lt;/strong&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: 'center'," +
-        "    displayIndent: '0em'," +
-        "    showMathMenu: true," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['$','$'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        " linebreaks: { automatic: true, width: '95% container' }, " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
-        "    } " +
-        "}); ";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;
-</summary><category term="python"></category></entry></feed>
+</body>
+</html>

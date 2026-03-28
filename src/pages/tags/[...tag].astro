@@ -8,15 +8,16 @@ export async function getStaticPaths() {
   const notes = await getCollection('notes');
   const publicNotes = notes.filter(n => n.data.public);
   const allTags = [...new Set(publicNotes.flatMap(n => n.data.tags))];
+  const sortedTags = [...allTags].sort();
 
   return allTags.map(tag => ({
-    params: { tag },
+    params: { tag: tag.toLowerCase() },
     props: {
       tag,
       notes: publicNotes
         .filter(n => n.data.tags.includes(tag))
         .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()),
-      allTags: allTags.sort(),
+      allTags: sortedTags,
     },
   }));
 }

@@ -21,7 +21,7 @@ const editUrl = `https://github.com/airingursb/notebook/edit/main/src/content/no
       <header class="article-header">
         <div class="breadcrumb">
           <a href="/notebook/">笔记</a>
-          {tags[0] && <> / <a href={`/notebook/tags/${tags[0]}`}>{tags[0]}</a></>}
+          {tags[0] && <> / <a href={`/notebook/tags/${tags[0].toLowerCase()}`}>{tags[0]}</a></>}
         </div>
         <h1>{title}</h1>
         <div class="article-meta">

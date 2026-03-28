@@ -10,7 +10,7 @@ const { tags, activeTag, basePath = '/notebook/' } = Astro.props;
 <div class="tag-list">
   <a href={basePath} class:list={['tag', { active: !activeTag }]}>全部</a>
   {tags.map(tag => (
-    <a href={`/notebook/tags/${tag}`} class:list={['tag', { active: activeTag === tag }]}>{tag}</a>
+    <a href={`/notebook/tags/${tag.toLowerCase()}`} class:list={['tag', { active: activeTag === tag }]}>{tag}</a>
   ))}
 </div>
 

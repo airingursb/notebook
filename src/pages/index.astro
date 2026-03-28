@@ -1,5 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import '../styles/global.css';
+
+const notes = await getCollection('notes');
 ---
 <html lang="zh">
   <head>
@@ -10,7 +13,8 @@ import '../styles/global.css';
   <body>
     <div class="page">
       <h1>笔记本</h1>
-      <p class="prose">测试字体和排版。Test font rendering and typography.</p>
+      <p>Found {notes.length} note(s)</p>
+      {notes.map(note => <p>{note.data.title} — {note.data.summary}</p>)}
     </div>
   </body>
 </html>

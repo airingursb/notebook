@@ -1,20 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const notes = await getCollection('notes');
 ---
-<html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>笔记本</title>
-  </head>
-  <body>
-    <div class="page">
-      <h1>笔记本</h1>
-      <p>Found {notes.length} note(s)</p>
-      {notes.map(note => <p>{note.data.title} — {note.data.summary}</p>)}
-    </div>
-  </body>
-</html>
+<BaseLayout title="首页">
+  <div class="page">
+    <p style="padding: 80px 0;">Found {notes.length} note(s)</p>
+  </div>
+</BaseLayout>

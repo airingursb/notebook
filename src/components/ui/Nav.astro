@@ -1,0 +1,84 @@
+---
+const { pathname } = Astro.url;
+---
+<nav class="nav">
+  <div class="page nav-inner">
+    <a href="/notebook/" class="nav-logo">笔记本</a>
+    <div class="nav-right">
+      <button class="search-trigger" id="search-trigger" aria-label="搜索">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        搜索笔记…
+        <kbd>⌘K</kbd>
+      </button>
+      <div class="nav-links">
+        <a href="/notebook/" class:list={[{ active: pathname === '/notebook/' || pathname === '/notebook' }]}>笔记</a>
+        <a href="/notebook/graph" class:list={[{ active: pathname.startsWith('/notebook/graph') }]}>图谱</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .search-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    background: none;
+    font-family: var(--font-sans);
+  }
+  .search-trigger:hover { border-color: var(--text-secondary); }
+  .search-trigger kbd {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    padding: 1px 5px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+    background: var(--bg);
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    font-size: 14px;
+  }
+  .nav-links a {
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .search-trigger kbd { display: none; }
+  }
+</style>

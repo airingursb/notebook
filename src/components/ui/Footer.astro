@@ -1,0 +1,33 @@
+---
+---
+<footer class="footer">
+  <div class="page footer-inner">
+    <span>© {new Date().getFullYear()} Airing</span>
+    <span class="footer-links">
+      <a href="https://github.com/airingursb" target="_blank" rel="noopener">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border-light);
+  }
+  .footer-inner {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .footer-links {
+    display: flex;
+    gap: 16px;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text-secondary); }
+</style>

@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  date: string;
+  summary: string;
+  tags: string[];
+  interactive: boolean;
+  slug: string;
+  featured?: boolean;
+}
+
+const { title, date, summary, tags, interactive, slug, featured = false } = Astro.props;
+---
+<a href={`/notebook/notes/${slug}`} class:list={['note', { full: featured }]}>
+  <div class="note-text">
+    <div class="note-date">{date.replace(/-/g, '.')}</div>
+    <div class="note-title">
+      {title}
+      {interactive && <span class="badge-interactive" />}
+    </div>
+    <div class="note-excerpt">{summary}</div>
+    <div class="note-tags">
+      {tags.map(tag => <span class="note-tag">{tag}</span>)}
+    </div>
+  </div>
+</a>
+
+<style>
+  .note {
+    display: block;
+    background: var(--bg);
+    padding: 36px 32px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    position: relative;
+  }
+  .note:hover { background: var(--border-light); }
+  .note.full { grid-column: 1 / -1; }
+  .note-date {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .note-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .note-excerpt {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .note-tags {
+    margin-top: 16px;
+    display: flex;
+    gap: 6px;
+  }
+  .note-tag {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+  .note-tag::before { content: '#'; }
+</style>

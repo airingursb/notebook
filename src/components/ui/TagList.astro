@@ -1,0 +1,24 @@
+---
+interface Props {
+  tags: string[];
+  activeTag?: string;
+  basePath?: string;
+}
+
+const { tags, activeTag, basePath = '/notebook/' } = Astro.props;
+---
+<div class="tag-list">
+  <a href={basePath} class:list={['tag', { active: !activeTag }]}>全部</a>
+  {tags.map(tag => (
+    <a href={`/notebook/tags/${tag}`} class:list={['tag', { active: activeTag === tag }]}>{tag}</a>
+  ))}
+</div>
+
+<style>
+  .tag-list {
+    padding: 0 0 48px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+</style>

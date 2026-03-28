@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ForceGraph from '../components/graph/ForceGraph.tsx';
+import { getGraphData } from '../lib/graph-data';
+
+const { nodes, edges } = await getGraphData();
+const allTags = [...new Set(nodes.flatMap(n => n.tags))].sort();
+const sortedNodes = [...nodes].sort((a, b) => b.linkCount - a.linkCount);
+
+const TAG_COLORS: Record<string, string> = {
+  Frontend: '#3b82f6', React: '#3b82f6',
+  Math: '#10b981', Canvas: '#f59e0b',
+  设计: '#8b5cf6', CSS: '#8b5cf6',
+  SVG: '#ef4444', 随想: '#6b7280',
+};
+
+function getColor(tags: string[]): string {
+  for (const tag of tags) {
+    if (TAG_COLORS[tag]) return TAG_COLORS[tag];
+  }
+  return '#6b7280';
+}
+---
+<BaseLayout title="图谱">
+  <div class="graph-page-layout">
+    <div class="graph-sidebar">
+      <div class="graph-sidebar-title">筛选</div>
+      <input class="graph-sidebar-search" placeholder="搜索节点…" />
+      <div class="graph-sidebar-tags">
+        {allTags.map(tag => (
+          <span class="graph-sidebar-tag">{tag}</span>
+        ))}
+      </div>
+      <div class="graph-sidebar-title">笔记 · {nodes.length}</div>
+      <ul class="graph-node-list">
+        {sortedNodes.map(node => (
+          <li class="graph-node-item">
+            <span class="graph-node-item-dot" style={`background: ${getColor(node.tags)}`}></span>
+            <a href={`/notebook/notes/${node.slug}`} style="color: inherit;">{node.title}</a>
+            <span class="graph-node-item-count">{node.linkCount}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="graph-canvas">
+      <ForceGraph
+        nodes={nodes}
+        edges={edges}
+        basePath="/notebook"
+        client:only="react"
+      />
+    </div>
+  </div>
+</BaseLayout>

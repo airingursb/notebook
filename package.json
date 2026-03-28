@@ -10,11 +10,15 @@
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
     "@astrojs/react": "^5.0.2",
+    "@codesandbox/sandpack-react": "^2.20.0",
     "astro": "^6.1.1",
+    "d3": "^7.9.0",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "pagefind": "^1.4.0",

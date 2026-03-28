@@ -14,4 +14,11 @@ export default defineConfig({
     mdx(),
     react(),
   ],
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['/notebook/pagefind/pagefind.js'],
+      },
+    },
+  },
 });

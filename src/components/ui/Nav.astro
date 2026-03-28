@@ -82,3 +82,9 @@ const { pathname } = Astro.url;
     .search-trigger kbd { display: none; }
   }
 </style>
+
+<script>
+  document.getElementById('search-trigger')?.addEventListener('click', () => {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+  });
+</script>

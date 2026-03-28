@@ -194,3 +194,123 @@ h3 { font-size: 18px; margin-top: 32px; margin-bottom: 12px; }
   padding: 32px;
   min-height: 200px;
 }
+
+/* ---- Search Modal ---- */
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  z-index: 100;
+}
+
+.search-modal {
+  width: 580px;
+  max-width: calc(100vw - 40px);
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-tertiary);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: transparent;
+}
+
+.search-kbd {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  background: var(--bg);
+}
+
+.search-results {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.search-section-title {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 20px 6px;
+}
+
+.search-result {
+  display: block;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.search-result:hover,
+.search-result.active { background: var(--accent-bg); }
+
+.search-result-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: var(--text);
+}
+
+.search-result-snippet {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.search-result-snippet mark {
+  background: #fef3c7;
+  color: var(--text);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.search-empty {
+  padding: 32px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
+.search-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.search-footer kbd {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  padding: 1px 4px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg);
+  margin-right: 4px;
+}

@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from 'astro:content';
+import NoteLayout from '../../layouts/NoteLayout.astro';
+import { getBacklinks } from '../../lib/backlinks';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes
+    .filter(note => note.data.public)
+    .map(note => ({
+      params: { slug: note.id },
+      props: { note },
+    }));
+}
+
+const { note } = Astro.props;
+const { Content, headings } = await render(note);
+
+const backlinkMap = await getBacklinks();
+const noteBacklinks = backlinkMap.get(note.data.title.toLowerCase()) || [];
+
+const wordCount = note.body?.split(/\s+/).length || 0;
+const readingTime = `约 ${Math.max(1, Math.ceil(wordCount / 200))} 分钟`;
+---
+<NoteLayout
+  title={note.data.title}
+  date={note.data.date}
+  tags={note.data.tags}
+  readingTime={readingTime}
+  headings={headings}
+  backlinks={noteBacklinks}
+  slug={note.id}
+>
+  <Content />
+</NoteLayout>

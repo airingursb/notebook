@@ -1,0 +1,180 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { BacklinkEntry } from '../lib/backlinks';
+
+interface Props {
+  title: string;
+  date: string;
+  tags: string[];
+  readingTime: string;
+  headings: { depth: number; slug: string; text: string }[];
+  backlinks: BacklinkEntry[];
+  slug: string;
+}
+
+const { title, date, tags, readingTime, headings, backlinks, slug } = Astro.props;
+const editUrl = `https://github.com/airingursb/notebook/edit/main/src/content/notes/${slug}.mdx`;
+---
+<BaseLayout title={title}>
+  <div class="note-page">
+    <div class="note-main">
+      <header class="article-header">
+        <div class="breadcrumb">
+          <a href="/notebook/">笔记</a>
+          {tags[0] && <> / <a href={`/notebook/tags/${tags[0]}`}>{tags[0]}</a></>}
+        </div>
+        <h1>{title}</h1>
+        <div class="article-meta">
+          <span>{date.replace(/-/g, '.')}</span>
+          <span class="dot"></span>
+          <span>{readingTime}</span>
+          <span class="dot"></span>
+          {tags.map(tag => <span class="meta-tag">{tag}</span>)}
+        </div>
+      </header>
+
+      <article class="prose">
+        <slot />
+      </article>
+
+      <div class="edit-link">
+        <a href={editUrl} target="_blank" rel="noopener">Edit on GitHub →</a>
+      </div>
+
+      {backlinks.length > 0 && (
+        <section class="backlinks">
+          <h3>反向链接</h3>
+          {backlinks.map(bl => (
+            <a href={`/notebook/notes/${bl.slug}`} class="backlink-item">
+              <span class="backlink-title">{bl.title}</span>
+            </a>
+          ))}
+        </section>
+      )}
+    </div>
+
+    {headings.length > 0 && (
+      <aside class="toc">
+        <div class="toc-title">目录</div>
+        <ul class="toc-list">
+          {headings
+            .filter(h => h.depth <= 3)
+            .map(h => (
+              <li style={h.depth === 3 ? 'padding-left: 24px; font-size: 12px;' : ''}>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+        </ul>
+      </aside>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .note-page {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 64px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .note-main { min-width: 0; }
+
+  .article-header { padding: 80px 0 48px; }
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .breadcrumb a {
+    color: var(--text-tertiary);
+    transition: color 0.2s;
+  }
+  .breadcrumb a:hover { color: var(--text); }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-top: 16px;
+  }
+  .dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .meta-tag::before { content: '#'; color: var(--text-muted); }
+
+  .edit-link {
+    padding: 32px 0;
+    font-size: 13px;
+  }
+  .edit-link a {
+    color: var(--text-tertiary);
+    transition: color 0.2s;
+  }
+  .edit-link a:hover { color: var(--text); }
+
+  .backlinks {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+  .backlinks h3 {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .backlink-item {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .backlink-item:hover .backlink-title { color: var(--accent); }
+  .backlink-title {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .toc {
+    position: sticky;
+    top: 40px;
+    align-self: start;
+    padding-top: 80px;
+  }
+  .toc-title {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .toc-list { list-style: none; }
+  .toc-list li {
+    font-size: 13px;
+    padding: 6px 0;
+    border-left: 2px solid var(--border-light);
+    padding-left: 12px;
+  }
+  .toc-list a {
+    color: var(--text-tertiary);
+    transition: color 0.2s;
+  }
+  .toc-list a:hover { color: var(--text); }
+
+  @media (max-width: 860px) {
+    .note-page {
+      grid-template-columns: 1fr;
+      padding: 0 20px;
+    }
+    .toc { display: none; }
+  }
+</style>

@@ -1,0 +1,196 @@
+/* ---- Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---- Reset ---- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---- Theme variables ---- */
+:root {
+  --bg: #fafaf9;
+  --bg-secondary: #fff;
+  --text: #1a1a1a;
+  --text-secondary: #888;
+  --text-tertiary: #bbb;
+  --text-muted: #ccc;
+  --border: #e8e8e6;
+  --border-light: #f0f0ee;
+  --accent: #10b981;
+  --accent-bg: #f0fdf4;
+  --tag-bg: #f0f0f0;
+  --tag-text: #555;
+  --code-bg: #1e1e2e;
+  --font-serif: 'Noto Serif SC', serif;
+  --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --max-width: 1200px;
+  --content-width: 720px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0f;
+    --bg-secondary: #12121a;
+    --text: #e0e0e0;
+    --text-secondary: #999;
+    --text-tertiary: rgba(255,255,255,0.35);
+    --text-muted: rgba(255,255,255,0.2);
+    --border: rgba(255,255,255,0.06);
+    --border-light: rgba(255,255,255,0.04);
+    --accent: #10b981;
+    --accent-bg: rgba(16,185,129,0.08);
+    --tag-bg: rgba(255,255,255,0.06);
+    --tag-text: rgba(255,255,255,0.5);
+  }
+}
+
+/* ---- Base ---- */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---- Typography ---- */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+h1 { font-size: 36px; line-height: 1.3; letter-spacing: -1px; }
+h2 { font-size: 24px; margin-top: 48px; margin-bottom: 16px; }
+h3 { font-size: 18px; margin-top: 32px; margin-bottom: 12px; }
+
+/* ---- Article prose ---- */
+.prose {
+  max-width: var(--content-width);
+  font-size: 16px;
+  line-height: 1.9;
+  font-weight: 300;
+  color: var(--text-secondary);
+}
+
+.prose p { margin-bottom: 24px; }
+
+.prose h2, .prose h3 {
+  color: var(--text);
+}
+
+.prose a {
+  color: var(--text);
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+
+.prose a:hover { border-color: var(--text); }
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--tag-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.prose pre {
+  background: var(--code-bg);
+  border-radius: 10px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 24px 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: #cdd6f4;
+}
+
+/* ---- Layout helpers ---- */
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+@media (max-width: 768px) {
+  .page { padding: 0 20px; }
+  h1 { font-size: 28px; }
+}
+
+/* ---- Tag pill ---- */
+.tag {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: 13px;
+  color: var(--tag-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: none;
+  font-family: var(--font-sans);
+}
+
+.tag:hover { border-color: var(--text); color: var(--text); }
+.tag.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+/* ---- Note badge (interactive indicator) ---- */
+.badge-interactive {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+/* ---- Interactive component container ---- */
+.interactive-block {
+  margin: 32px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.interactive-block-header {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.interactive-block-body {
+  padding: 32px;
+  min-height: 200px;
+}

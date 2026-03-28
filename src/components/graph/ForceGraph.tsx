@@ -194,6 +194,7 @@ export default function ForceGraph({ nodes, edges, basePath }: Props) {
           return s?.id === selected.id ? t : s;
         })
         .filter((n): n is GraphNode => !!n)
+        .filter((n, i, arr) => arr.findIndex(a => a.id === n.id) === i)
     : [];
 
   return (

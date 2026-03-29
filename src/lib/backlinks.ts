@@ -9,7 +9,9 @@ export async function getBacklinks(): Promise<Map<string, BacklinkEntry[]>> {
   const notes = await getCollection('notes');
   const backlinkMap = new Map<string, BacklinkEntry[]>();
 
-  for (const note of notes) {
+  const publicNotes = notes.filter(n => n.data.public && !n.data.draft);
+
+  for (const note of publicNotes) {
     const { body } = note;
     if (!body) continue;
 

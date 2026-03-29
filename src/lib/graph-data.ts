@@ -20,7 +20,7 @@ export interface GraphData {
 
 export async function getGraphData(): Promise<GraphData> {
   const notes = await getCollection('notes');
-  const publicNotes = notes.filter(n => n.data.public);
+  const publicNotes = notes.filter(n => n.data.public && !n.data.draft);
 
   const titleToSlug = new Map<string, string>();
   for (const note of publicNotes) {

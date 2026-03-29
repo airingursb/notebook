@@ -16,7 +16,6 @@ const { title, date, summary, tags, interactive, slug, featured = false } = Astr
     <div class="note-date">{date.replace(/-/g, '.')}</div>
     <div class="note-title">
       {title}
-      {interactive && <span class="badge-interactive" />}
     </div>
     <div class="note-excerpt">{summary}</div>
     <div class="note-tags">

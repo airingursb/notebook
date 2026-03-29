@@ -6,7 +6,7 @@ import { getBacklinks } from '../../lib/backlinks';
 export async function getStaticPaths() {
   const notes = await getCollection('notes');
   return notes
-    .filter(note => note.data.public)
+    .filter(note => note.data.public && !note.data.draft)
     .map(note => ({
       params: { slug: note.id },
       props: { note },

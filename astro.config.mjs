@@ -15,6 +15,15 @@ export default defineConfig({
     react(),
   ],
   vite: {
+    plugins: [{
+      name: 'pagefind-dev-stub',
+      configureServer(server) {
+        server.middlewares.use('/notebook/pagefind/pagefind.js', (_req, res) => {
+          res.setHeader('Content-Type', 'application/javascript');
+          res.end('export function init() {} export async function search() { return { results: [] }; }');
+        });
+      },
+    }],
     build: {
       rollupOptions: {
         external: ['/notebook/pagefind/pagefind.js'],

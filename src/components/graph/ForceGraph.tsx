@@ -79,7 +79,7 @@ export default function ForceGraph({ nodes, edges, basePath }: Props) {
     const link = edgeGroup.selectAll('line')
       .data(edges)
       .join('line')
-      .attr('stroke', 'rgba(255,255,255,0.04)')
+      .attr('stroke', 'rgba(0,0,0,0.08)')
       .attr('stroke-width', 0.5);
 
     const nodeGroup = g.append('g');
@@ -122,16 +122,16 @@ export default function ForceGraph({ nodes, edges, basePath }: Props) {
       .attr('text-anchor', 'middle')
       .attr('font-size', 10)
       .attr('font-family', 'Inter, sans-serif')
-      .attr('fill', 'rgba(255,255,255,0.35)')
+      .attr('fill', 'rgba(0,0,0,0.4)')
       .attr('pointer-events', 'none');
 
     node.on('mouseenter', function(event, d) {
       d3.select(this).select('.core').attr('opacity', 1).attr('r', (dd: any) => Math.max(4, dd.linkCount * 0.8 + 4));
       d3.select(this).select('.halo').attr('opacity', 0.15);
-      d3.select(this).select('text').attr('fill', '#fff');
+      d3.select(this).select('text').attr('fill', '#1a1a1a');
       link.attr('stroke', (l: any) =>
         l.source.id === d.id || l.target.id === d.id
-          ? 'rgba(16,185,129,0.4)' : 'rgba(255,255,255,0.04)'
+          ? 'rgba(16,185,129,0.4)' : 'rgba(0,0,0,0.08)'
       ).attr('stroke-width', (l: any) =>
         l.source.id === d.id || l.target.id === d.id ? 1 : 0.5
       );
@@ -140,8 +140,8 @@ export default function ForceGraph({ nodes, edges, basePath }: Props) {
     node.on('mouseleave', function() {
       d3.select(this).select('.core').attr('opacity', 0.6).attr('r', (dd: any) => Math.max(2.5, dd.linkCount * 0.8 + 2.5));
       d3.select(this).select('.halo').attr('opacity', 0.04);
-      d3.select(this).select('text').attr('fill', 'rgba(255,255,255,0.35)');
-      link.attr('stroke', 'rgba(255,255,255,0.04)').attr('stroke-width', 0.5);
+      d3.select(this).select('text').attr('fill', 'rgba(0,0,0,0.4)');
+      link.attr('stroke', 'rgba(0,0,0,0.08)').attr('stroke-width', 0.5);
     });
 
     node.on('click', (event, d) => {

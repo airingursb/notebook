@@ -19,7 +19,8 @@ export default function SearchModal() {
     if (!open || pagefind) return;
     (async () => {
       try {
-        const pf = await import(/* @vite-ignore */ '/notebook/pagefind/pagefind.js');
+        const pagefindPath = '/notebook/pagefind/pagefind.js';
+        const pf = await import(/* @vite-ignore */ pagefindPath);
         await pf.init();
         setPagefind(pf);
       } catch {

@@ -6,7 +6,7 @@ import NoteCard from '../../components/ui/NoteCard.astro';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes');
-  const publicNotes = notes.filter(n => n.data.public);
+  const publicNotes = notes.filter(n => n.data.public && !n.data.draft);
   const allTags = [...new Set(publicNotes.flatMap(n => n.data.tags))];
   const sortedTags = [...allTags].sort();
 

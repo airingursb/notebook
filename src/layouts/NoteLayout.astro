@@ -164,8 +164,14 @@ const editUrl = `https://github.com/airingursb/notebook/edit/main/src/content/no
     border-left: 2px solid var(--border-light);
     padding-left: 12px;
   }
+  .toc-list li.active {
+    border-left-color: var(--accent);
+  }
+  .toc-list li.active a {
+    color: var(--text);
+  }
   .toc-list a {
-    color: var(--text-tertiary);
+    color: var(--text-secondary);
     transition: color 0.2s;
   }
   .toc-list a:hover { color: var(--text); }
@@ -178,3 +184,39 @@ const editUrl = `https://github.com/airingursb/notebook/edit/main/src/content/no
     .toc { display: none; }
   }
 </style>
+
+<script>
+  function initTocHighlight() {
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    if (!tocLinks.length) return;
+
+    const headingEls = Array.from(tocLinks).map(a => {
+      const id = decodeURIComponent(a.getAttribute('href')?.slice(1) || '');
+      return document.getElementById(id);
+    }).filter(Boolean) as HTMLElement[];
+
+    let current = '';
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          current = entry.target.id;
+        }
+      }
+      tocLinks.forEach(link => {
+        const li = link.parentElement;
+        const id = decodeURIComponent(link.getAttribute('href')?.slice(1) || '');
+        if (id === current) {
+          li?.classList.add('active');
+        } else {
+          li?.classList.remove('active');
+        }
+      });
+    }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+    headingEls.forEach(el => observer.observe(el));
+  }
+
+  initTocHighlight();
+  document.addEventListener('astro:page-load', initTocHighlight);
+</script>

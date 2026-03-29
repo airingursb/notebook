@@ -6,7 +6,7 @@ import NoteCard from '../components/ui/NoteCard.astro';
 
 const allNotes = await getCollection('notes');
 const publicNotes = allNotes
-  .filter(note => note.data.public)
+  .filter(note => note.data.public && !note.data.draft)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const allTags = [...new Set(publicNotes.flatMap(note => note.data.tags))].sort();
@@ -15,7 +15,7 @@ const allTags = [...new Set(publicNotes.flatMap(note => note.data.tags))].sort()
   <div class="page">
     <div class="hero">
       <h1>思考的痕迹</h1>
-      <p>关于前端、数学、设计和一切让我好奇的事物。部分笔记包含可交互的组件，带有 <span class="badge-interactive"></span> 标记。</p>
+      <p>记录关于前端、数学、设计、哲学和一切让我好奇的事物。</p>
     </div>
 
     <TagList tags={allTags} />

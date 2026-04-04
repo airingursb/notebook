@@ -1,0 +1,78 @@
+---
+title: 可视化解读 OpenHarness：用 3% 代码复刻 Claude Code 的 Agent 架构
+date: "2026-04-04"
+tags: [AI, Agent, Architecture]
+public: true
+interactive: false
+summary: OpenHarness 是香港大学 HKUDS 团队开源的项目，用纯 Python 复刻 Claude Code 的 Agent Harness 架构，仅 11,733 行代码实现 98% 工具覆盖率。
+---
+
+[OpenHarness](https://github.com/HKUDS/OpenHarness) 是香港大学 HKUDS 团队开源的项目，核心定位是**用纯 Python 复刻 Claude Code 的 Agent Harness 架构**。
+
+## 什么是 Agent Harness？
+
+> *The model is the agent. The code is the harness.*
+
+模型提供智能，Harness 提供"手、眼、记忆和安全边界"。本质就是把一个 LLM 变成可用 Agent 所需的全部基础设施：
+
+**Harness = Tools + Knowledge + Observation + Action + Permissions**
+
+## 架构全景
+
+![OpenHarness 架构全景](/notebook/images/openharness/architecture.png)
+
+核心循环很简洁：Query → LLM 流式响应 → 检测到 tool_use → 权限检查 → Hook → 执行 → 结果回传 → 继续循环，直到模型决定停止。
+
+## 代码量对比：44x 更轻量
+
+![代码量对比](/notebook/images/openharness/comparison.png)
+
+这组数据相当惊人：
+
+| 指标 | Claude Code | OpenHarness |
+|------|------------|-------------|
+| 代码行数 | 512,664 行 TypeScript | 11,733 行 Python |
+| 文件数 | 1,884 | 163 |
+| 代码精简倍数 | — | **44x** |
+| 工具覆盖率 | 44 个工具 | 43 个（**98%**） |
+| 单元测试 | — | 114 通过 |
+| CLI 命令 | — | 54 个 |
+
+这对于想理解"AI Agent 底层到底怎么跑起来的"非常有价值——去掉了企业级的遥测、OAuth、数百个 React 组件等 overhead，只保留了 Harness 的骨架。
+
+## 10 大子系统的设计逻辑
+
+![子系统设计](/notebook/images/openharness/subsystems.png)
+
+按四层架构组织：
+
+### 能力层（绿色）
+
+- **Tools（43+）**：覆盖文件读写、Shell、Web 搜索、MCP
+- **Skills（按需知识）**：40+ `.md` 知识文件，按需加载
+- **Plugins（插件）**：兼容 Claude Code 官方插件
+
+### 安全控制层（琥珀色）
+
+- **Permissions**：三级权限模式（Default / Auto / Plan）
+- **Hooks（生命周期）**：Pre/Post ToolUse 生命周期 Hook
+- **Commands（54）**：/help /commit /plan 等 CLI 命令
+
+### 协作扩展层（蓝色）
+
+- **MCP 协议**：外部工具集成
+- **Memory（记忆）**：跨会话持久化
+- **Coordinator**：多 Agent 协作子系统
+
+### 基础设施层（灰色）
+
+- **Config（配置）**：多层级设置迁移
+- **React TUI**：Ink 终端交互界面
+
+## 为什么值得关注？
+
+1. **学习价值极高**：想理解 Claude Code 内部架构，读 OpenHarness 的 11K 行 Python 比读 500K 行 TypeScript 高效得多
+2. **架构思维**：清晰展示了一个 Agent Harness 需要哪些子系统，以及它们如何协作
+3. **可扩展**：MIT License，Python ≥3.11，可以作为自己构建 Agent 系统的起点
+
+核心 takeaway：**模型是 Agent，代码是 Harness**。LLM 本身已经具备推理能力，Harness 做的是给它接上工具、记忆、权限和协作能力，让它能真正"做事"。
